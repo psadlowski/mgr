@@ -22,11 +22,12 @@ data {
   int<lower=0> J_beta; // # of beta regressors
   vector[J_beta] z_beta[H]; // beta regressors 
   int<lower=0> K; // # of brand choice regressors
-  matrix[K, M] x[N]; // brand choice regressors
+  matrix[M, K] x[N]; // brand choice regressors, counterintuitive shape for easier multiplication
 }
 
 transformed data {
   real sigma_1 = (J_r + 4.0) / 2.0;
+  real sigma_1inv = 1.0 / sigma_1;
 }
 
 parameters {
@@ -45,9 +46,12 @@ parameters {
   matrix[K, J_beta] z_delta_lpa;
   matrix[K, J_beta] z_delta_gains;
   // Cov matrix scale
-  vector<lower=0>[K] d_beta_losses;
-  vector<lower=0>[K] d_beta_lpa;
-  vector<lower=0>[K] d_beta_gains;
+  vector<lower=0>[K] d_beta_losses_a;
+  vector<lower=0>[K] d_beta_lpa_a;
+  vector<lower=0>[K] d_beta_gains_a;
+  vector<lower=0>[K] d_beta_losses_b;
+  vector<lower=0>[K] d_beta_lpa_b;
+  vector<lower=0>[K] d_beta_gains_b;
   // Cov matrix shape
   cholesky_factor_corr[K] L_beta_losses;
   cholesky_factor_corr[K] L_beta_lpa;
@@ -72,6 +76,10 @@ transformed parameters {
   // This may be less restrictive than original Rossi paper, but definitely should estimate
   // the covariance matrix for different demographics' impact on each beta
   // You should also check if the multiplication still makes sense as all you did was fix dims
+  vector[K] d_beta_losses = d_beta_losses_a .* sqrt(d_beta_losses_b);
+  vector[K] d_beta_lpa = d_beta_lpa_a .* sqrt(d_beta_lpa_b);
+  vector[K] d_beta_gains = d_beta_gains_a .* sqrt(d_beta_gains_b);
+  
   {
     // TBH, the entire matrix-like approach might simply be slowing everything down
     matrix[K, K] L_sigma;
@@ -104,8 +112,8 @@ model {
   // Stan manual
   // Might be easier to drop multivariate approach here, even though I'm unsure if that's correct
   // ATM Univariate inverse gamma is used to simplify
-  sigma_lower ~ inv_gamma(sigma_1, 1 / sigma_1);
-  sigma_upper ~ inv_gamma(sigma_1, 1 / sigma_1);
+  sigma_lower ~ inv_gamma(sigma_1, sigma_1inv);
+  sigma_upper ~ inv_gamma(sigma_1, sigma_1inv);
   
   // Likelihood
   // Maybe you need to declare truncated normal here, dunno
@@ -125,9 +133,20 @@ model {
   // Priors
   // You may be able to turn this into a loop if using an inverse gamma is reasonable
   // Since Stan prefers it this way, let's use the decomposition
-  d_beta_losses ~ cauchy(0, 2.5);
-  d_beta_lpa ~ cauchy(0, 2.5);
-  d_beta_gains ~ cauchy(0, 2.5);
+  // d_beta_losses ~ cauchy(0, 2.5);
+  // d_beta_lpa ~ cauchy(0, 2.5);
+  // d_beta_gains ~ cauchy(0, 2.5);
+  
+  // https://betanalpha.github.io/assets/case_studies/fitting_the_cauchy.html
+  // Check the above for an alternative specification for Cauchy in STAN
+  // This is a faster alternative equivalent to the above
+  // If expectations of this variable would be of interest, extra research necessary
+  d_beta_losses_a ~ std_normal();
+  d_beta_losses_b ~ inv_gamma(0.5, 3.125);
+  d_beta_lpa_a ~ std_normal();
+  d_beta_lpa_b ~ inv_gamma(0.5, 3.125);
+  d_beta_gains_a ~ std_normal();
+  d_beta_gains_b ~ inv_gamma(0.5, 3.125);
   
   // 1 gives uniform, maybe read more
   L_beta_losses ~ lkj_corr_cholesky(1);
@@ -161,11 +180,11 @@ model {
       // The actual price shock probably needs to be passed separately
       // Try to avoid those transpositions here, maybe?
       if (ps[n] < r_lower[h_id[n]]) // Losses condition
-        x_k = x[n]' * beta_losses[h_id[n]];
+        x_k = x[n] * beta_losses[h_id[n]];
       else if (ps[n] > r_upper[h_id[n]]) // Gains condition
-        x_k = x[n]' * beta_gains[h_id[n]];
+        x_k = x[n] * beta_gains[h_id[n]];
       else // LPA
-        x_k = x[n]' * beta_lpa[h_id[n]];
+        x_k = x[n] * beta_lpa[h_id[n]];
       y[n] ~ categorical_logit(x_k);
     }
   }
