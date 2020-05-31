@@ -1,0 +1,132 @@
+nohup: ignoring input
+0bad3c81342c3ef497aa5bc1af0f6182ca216c03593b08f555b223bf0d8fe137
+deleting user rstudio
+creating new rumcajs with UID 5000
+useradd: warning: the home directory already exists.
+Not copying any file from skel directory into it.
+mkdir: cannot create directory ‘/home/rumcajs’: File exists
+Loading required package: StanHeaders
+Loading required package: ggplot2
+rstan (Version 2.19.3, GitRev: 2e1f913d3ca3)
+For execution on a local, multicore CPU with excess RAM we recommend calling
+options(mc.cores = parallel::detectCores()).
+To avoid recompilation of unchanged Stan programs, we recommend calling
+rstan_options(auto_write = TRUE)
+
+
+SAMPLING FOR MODEL 'sigmoid_smooth_v3b1_dev' NOW (CHAIN 2).
+SAMPLING FOR MODEL 'sigmoid_smooth_v3b1_dev' NOW (CHAIN 1).
+
+SAMPLING FOR MODEL 'sigmoid_smooth_v3b1_dev' NOW (CHAIN 3).
+
+SAMPLING FOR MODEL 'sigmoid_smooth_v3b1_dev' NOW (CHAIN 4).
+Chain 3: 
+Chain 3: Gradient evaluation took 0.103363 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 1033.63 seconds.
+Chain 3: Adjust your expectations accordingly!
+Chain 3: 
+Chain 3: 
+Chain 1: 
+Chain 1: Gradient evaluation took 0.102155 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1021.55 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 4: 
+Chain 2: 
+Chain Chain 42: : Gradient evaluation took 0.103352 secondsGradient evaluation took 0.103884 seconds
+
+Chain Chain 24: : 1000 transitions using 10 leapfrog steps per transition would take 1038.84 seconds.1000 transitions using 10 leapfrog steps per transition would take 1033.52 seconds.
+
+Chain Chain 24: : Adjust your expectations accordingly!Adjust your expectations accordingly!
+
+Chain Chain 24: : 
+
+Chain Chain 24: : 
+
+Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
+4: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 4: 
+Chain 4:  Elapsed Time: 11984.8 seconds (Warm-up)
+Chain 4:                4296.12 seconds (Sampling)
+Chain 4:                16280.9 seconds (Total)
+Chain 4: 
+Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 2: 
+Chain 2:  Elapsed Time: 12941.5 seconds (Warm-up)
+Chain 2:                6813.4 seconds (Sampling)
+Chain 2:                19754.9 seconds (Total)
+Chain 2: 
+Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 3: 
+Chain 3:  Elapsed Time: 14439.8 seconds (Warm-up)
+Chain 3:                6773.81 seconds (Sampling)
+Chain 3:                21213.6 seconds (Total)
+Chain 3: 
+Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 14296.1 seconds (Warm-up)
+Chain 1:                11833.4 seconds (Sampling)
+Chain 1:                26129.5 seconds (Total)
+Chain 1: 
+Warning messages:
+1: There were 49 divergent transitions after warmup. Increasing adapt_delta above 0.8 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: There were 2 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
+http://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded 
+3: Examine the pairs() plot to diagnose sampling problems
+ 
+4: The largest R-hat is NA, indicating chains have not mixed.
+Running the chains for more iterations may help. See
+http://mc-stan.org/misc/warnings.html#r-hat 
+5: Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
+Running the chains for more iterations may help. See
+http://mc-stan.org/misc/warnings.html#bulk-ess 
+6: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
+Running the chains for more iterations may help. See
+http://mc-stan.org/misc/warnings.html#tail-ess 
+20200423A
+20200423A
